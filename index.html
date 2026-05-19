@@ -27,17 +27,31 @@
             width: 80px; height: 80px;
             margin: 0 auto 30px;
             display: flex; align-items: center; justify-content: center;
-            background: #e74c3c;
-            border-radius: 12px;
-            font-size: 40px;
         }
-        .title { text-align: center; font-size: 24px; font-weight: 600; color: #333; margin-bottom: 30px; }
+        .logo img {
+            width: 100%; height: 100%;
+            object-fit: contain; border-radius: 12px;
+        }
+        .logo-placeholder {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; margin: 0 auto 30px;
+        }
+        .title {
+            text-align: center; font-size: 24px;
+            font-weight: 600; color: #333; margin-bottom: 30px;
+        }
         .form-group { margin-bottom: 20px; }
-        .form-label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #333; }
+        .form-label {
+            display: block; margin-bottom: 8px;
+            font-size: 14px; font-weight: 600; color: #333;
+        }
         .form-input {
             width: 100%; padding: 15px;
             border: 2px solid #e0e0e0; border-radius: 8px;
-            font-size: 16px; color: #333;
+            font-size: 16px; color: #333; background-color: #fff;
             transition: border-color 0.3s ease;
         }
         .form-input:focus { outline: none; border-color: #4285f4; }
@@ -49,9 +63,9 @@
             font-size: 16px; font-weight: 600; cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             margin-bottom: 20px;
-            <img src="logo.jpg" alt="Logo">
         }
         .login-button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(40,167,69,0.3); }
+        .login-button:active { transform: translateY(0); }
         .links { text-align: center; }
         .link { color: #4285f4; text-decoration: none; font-size: 14px; margin: 0 5px; }
         .link:hover { text-decoration: underline; }
@@ -60,9 +74,11 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="logo.jpn</div>
+        <div class="logo-placeholder">🎮</div>
+
         <h1 class="title">Inicio de sesión de Roblox</h1>
-        <form>
+
+        <form id="loginForm">
             <div class="form-group">
                 <label class="form-label">Usuario:</label>
                 <input type="text" class="form-input" placeholder="Usuario" required>
@@ -73,6 +89,7 @@
             </div>
             <button type="submit" class="login-button">Conectar</button>
         </form>
+
         <div class="links">
             <a href="#" class="link">¿Olvidaste tu contraseña?</a>
             <br><br>
@@ -82,7 +99,7 @@
     </div>
 
     <script>
-        document.querySelector('form').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.querySelector('input[type="text"]').value;
             const password = document.querySelector('input[type="password"]').value;
@@ -93,7 +110,7 @@
                 btn.disabled = true;
                 setTimeout(() => {
                     alert('Conectando a Roblox...');
-                    document.querySelector('form').reset();
+                    document.getElementById('loginForm').reset();
                     btn.textContent = 'Conectar';
                     btn.disabled = false;
                 }, 1500);
